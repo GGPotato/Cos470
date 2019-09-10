@@ -97,17 +97,148 @@ Commit this work (with a descriptive commit message), and push it to github
             while (switchTF == true)
             {
                 String Words = file.ReadLine();
-                Console.WriteLine(Words);
+                CountingLettersMethod(Words, WordCountValue);
+                //Console.WriteLine(Words);
                 if (Words == null)
                 {
+                    
+
                     Console.WriteLine("All Set!");
                     switchTF = false;
-
                 }
             }
             Console.WriteLine("press any key to exit");
-            String y = Console.ReadLine();
+           // String y = Console.ReadLine();
             return;
+
+        }
+
+        public static void CountingLettersMethod(String Words, int WordCountValue)
+        {
+            string words = Words;
+            int WordCountAmount=0;
+            if (Words == null)
+            {
+                return;
+            }
+            foreach (char c in Words)
+            {
+                if(c == 'A' || c == 'a')
+                {
+                    WordCountAmount+=1;
+                }
+                if (c == 'B' || c == 'b')
+                {
+                    WordCountAmount+=2;
+                }
+                if (c == 'C' || c == 'c')
+                {
+                    WordCountAmount+=3;
+                }
+                if (c == 'D' || c == 'd')
+                {
+                    WordCountAmount+=4;
+                }
+                if (c == 'E' || c == 'e')
+                {
+                    WordCountAmount+=5;
+                }
+                if (c == 'F' || c == 'f')
+                {
+                    WordCountAmount+=6;
+                }
+                if (c == 'G' || c == 'g')
+                {
+                    WordCountAmount+=7;
+                }
+                if (c == 'H' || c == 'h')
+                {
+                    WordCountAmount+=8;
+                }
+                if (c == 'I' || c == 'i')
+                {
+                    WordCountAmount+=9;
+                }
+                if (c == 'J' || c == 'j')
+                {
+                    WordCountAmount+=10;
+                }
+                if (c == 'K' || c == 'k')
+                {
+                    WordCountAmount+=11;
+                }
+                if (c == 'L' || c == 'l')
+                {
+                    WordCountAmount+=12;
+                }
+                if (c == 'M' || c == 'm')
+                {
+                    WordCountAmount+=13;
+                }
+                if (c == 'N' || c == 'n')
+                {
+                    WordCountAmount+=14;
+                }
+                if (c == 'O' || c == 'o')
+                {
+                    WordCountAmount+=15;
+                }
+                if (c == 'P' || c == 'p')
+                {
+                    WordCountAmount+=16;
+                }
+                if (c == 'Q' || c == 'q')
+                {
+                    WordCountAmount+=17;
+                }
+                if (c == 'R' || c == 'r')
+                {
+                    WordCountAmount+=18;
+                }
+                if (c == 'S' || c == 's')
+                {
+                    WordCountAmount+=19;
+                }
+                if (c == 'T' || c == 't')
+                {
+                    WordCountAmount+=20;
+                }
+                if (c == 'U' || c == 'u')
+                {
+                    WordCountAmount+=21;
+                }
+                if (c == 'V' || c == 'v')
+                {
+                    WordCountAmount+=22;
+                }
+                if (c == 'W' || c == 'w')
+                {
+                    WordCountAmount += 23;
+                }
+                if (c == 'X' || c == 'x')
+                {
+                    WordCountAmount+=24;
+                }
+                if (c == 'Y' || c == 'y')
+                {
+                    WordCountAmount+=25;
+                }
+                if (c == 'Z' || c == 'z')
+                {
+                    WordCountAmount+=26;
+                }
+                //Console.WriteLine(c);
+            }
+
+            if (WordCountValue == WordCountAmount)
+            {
+                Console.WriteLine(Words);
+            }
+            //Console.WriteLine(WordCountAmount);
+            
+
+
+
 
         }
 
