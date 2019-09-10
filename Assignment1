@@ -1,1 +1,115 @@
+using System;
+using System.IO;
 
+namespace Assignment1._1
+/*
+ * Program your application to
+Read the text file
+Hint: The File class, using System.IO;
+Hint: If you use a file Stream, remember to Dispose() it.
+Find all "Dollar words" as described in "Context" above
+Hint: There should be a clear separation between user interface code, business logic code, and File IO code.
+Write the dollar words to a file like: "DollarWords.txt"
+Write some aggregate information to the console, for example:
+what portion of words are dollar words
+how long it took
+what was the longest/shortest dollar word
+what is the most expensive word
+Save the console output into the project directory (screenshot or copy-pasta into a text file)
+Commit this work (with a descriptive commit message), and push it to github
+ */
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            string FilePathName;
+            string intVal;
+
+            int ValueOfWords;
+
+            //start intro
+            Console.WriteLine("Hello! {0} " +
+                "This program is designed to give point value amounts to words in a file,{0}" +
+                "based on the their natural number equivelent. Such as A=1 B=2 C=3 ect. {0}" +
+                "Hope you have a wonderful day, and that this program is of some use to you!{0}", Environment.NewLine);
+            //end intro
+
+            //Start user input intro #1
+            Console.WriteLine("Please proceed by entering in the numerical Point Value amount for the target words.");
+            intVal = Console.ReadLine();
+            ValueOfWords = Convert.ToInt32(intVal);
+            Console.WriteLine("Thankyou!");
+            //End User input intro #1
+
+            //Start User input intro #2
+            Console.WriteLine("Just one more step, please provide me with the file Path name so I can get to work.");
+            FilePathName = Console.ReadLine();
+            Console.WriteLine("Thank you I will now process the file.");
+            //End User input intro #2
+
+            //Start the file processing part
+            CheckFile(FilePathName, ValueOfWords);
+
+        }
+
+        public static String CheckFile(String FilePathName, int ValueOfWords)
+        {
+            string TryFileAgain;
+            string PathNameValid;
+            //int WordCountValue = ValueOfWords;
+
+            //checks to see if the file is valid 
+            
+            if (!File.Exists(FilePathName))
+            {
+                Console.WriteLine("Sorry no such file could be found.");
+                Console.WriteLine("Would you like to try inputing that file name again? Y or N");
+                TryFileAgain = Console.ReadLine();
+                if (TryFileAgain == "Y" || TryFileAgain == "y")
+                {
+                    String newPathName;
+                    Console.WriteLine("Wonderful, then please provide the new path name now");
+                    newPathName = Console.ReadLine();
+                    return CheckFile(newPathName, ValueOfWords);
+                }
+                else
+                {
+                    return " Sorry to see you go! Have a great one!";
+                    
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("Target File acquired");
+                Console.WriteLine("Calculateing {0} point value words", ValueOfWords);
+                CountingWordsMethod(FilePathName, ValueOfWords);
+                return "The file has been processed";
+            }
+        }
+        //does the acatual checking
+        public static void CountingWordsMethod(String FilePathName, int WordCountValue)
+        {
+            Boolean switchTF = true;
+            System.IO.StreamReader file = new System.IO.StreamReader(@FilePathName);
+            while (switchTF == true)
+            {
+                String Words = file.ReadLine();
+                Console.WriteLine(Words);
+                if (Words == null)
+                {
+                    Console.WriteLine("All Set!");
+                    switchTF = false;
+
+                }
+            }
+            Console.WriteLine("press any key to exit");
+            String y = Console.ReadLine();
+            return;
+
+        }
+
+    }
+}
