@@ -25,20 +25,21 @@ namespace Assignment1._1
                 what is the most expensive word
              * 
              */
-            Console.WriteLine("The portion of Swords that are dollar words are " + percentageOfDollarWords(words, filteredWords));
-            Console.WriteLine("" + FilterWords(words, wordCountValue, true));
+            Console.WriteLine("The portion of words that are dollar words are " + percentageOfDollarWords(words, filteredWords));
+            Console.WriteLine("" + mostExpensiveWord(words, wordCountValue, true));
 
             //string mostExpensiveWord = mostExpensiveWord(words);
 
             //longestShortestDollarWords(filteredWords);
 
         }
-        /*
+
         private static string mostExpensiveWord(string[] words, int wordCountValue, bool mostExpensiveWordSwitch)
         {
-            FilterWords(words, wordCountValue, mostExpensiveWordSwitch);
+            return FilterWords(words, wordCountValue, mostExpensiveWordSwitch).ToString();
+
         }
-        */
+
         private static double percentageOfDollarWords(string[] words, string[] filteredWords)
         {
             double percentageOfDollarWords = ((double)filteredWords.Length / (double)words.Length) * 100;
@@ -93,15 +94,9 @@ namespace Assignment1._1
                     results.Add(word);
                 }
             }
-
-
-
-            string l = results.ElementAt(0);
-
-
             if (mostExpensiveWordSwitch == true)
             {
-                mostExpensiveWord.Add(l);
+                mostExpensiveWord.Add(results[mostExpensiveWordIndex]);
                 return mostExpensiveWord.ToArray();
             }
 
