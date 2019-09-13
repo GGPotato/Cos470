@@ -1,98 +1,115 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Assignment1._1
-/*
- * Program your application to
-Read the text file
-Hint: The File class, using System.IO;
-Hint: If you use a file Stream, remember to Dispose() it.
-Find all "Dollar words" as described in "Context" above
-Hint: There should be a clear separation between user interface code, business logic code, and File IO code.
-Write the dollar words to a file like: "DollarWords.txt"
-Write some aggregate information to the console, for example:
-what portion of words are dollar words
-how long it took
-what was the longest/shortest dollar word
-what is the most expensive word
-Save the console output into the project directory (screenshot or copy-pasta into a text file)
-Commit this work (with a descriptive commit message), and push it to github
- */
 {
     class Program
     {
-        
+
         static void Main(string[] args)
         {
-            /*
-            //start intro
-            Console.WriteLine("Hello! {0} " +
-                "This program is designed to give point value amounts to words in a file,{0}" +
-                "based on the their natural number equivelent. Such as A=1 B=2 C=3 ect. {0}" +
-                "Hope you have a wonderful day, and that this program is of some use to you!{0}", Environment.NewLine);
-            //end intro
-
-            //Start user input intro #1
-            Console.WriteLine("Please proceed by entering in the numerical Point Value amount for the target words.");
-            string intVal = Console.ReadLine();
-            int ValueOfWords = Convert.ToInt32(intVal);
-            Console.WriteLine("Thankyou!");
-            //End User input intro #1
-
-            //Start User input intro #2
-            Console.WriteLine("Just one more step, please provide me with the file Path name so I can get to work.");
-            String FilePathName = Console.ReadLine();
-            Console.WriteLine("Thank you I will now process the file.");
-            //End User input intro #2
-            */
-            //Start the file processing part
             string[] words = GetWordsFromFile(@"C:\WTH\words.txt");
-            string[] filteredWords = FilterWords(words, 100);
+            string[] filteredWords = FilterWords(words, 100, false);
             OutputToFile(filteredWords);
-            OutputStats(words,filteredWords);
+            OutputStats(words, 100, filteredWords);
         }
 
-        private static void OutputStats(string[] words, string[] filteredWords)
+        private static void OutputStats(string[] words, int wordCountValue, string[] filteredWords)
         {
-           
+            /*
+             * what portion of words are dollar words
+                how long it took
+                what was the longest/shortest dollar word
+                what is the most expensive word
+             * 
+             */
+            Console.WriteLine("The portion of Swords that are dollar words are " + percentageOfDollarWords(words, filteredWords));
+            Console.WriteLine("" + FilterWords(words, wordCountValue, true));
+
+            //string mostExpensiveWord = mostExpensiveWord(words);
+
+            //longestShortestDollarWords(filteredWords);
+
+        }
+        /*
+        private static string mostExpensiveWord(string[] words, int wordCountValue, bool mostExpensiveWordSwitch)
+        {
+            FilterWords(words, wordCountValue, mostExpensiveWordSwitch);
+        }
+        */
+        private static double percentageOfDollarWords(string[] words, string[] filteredWords)
+        {
+            double percentageOfDollarWords = ((double)filteredWords.Length / (double)words.Length) * 100;
+            return percentageOfDollarWords;
+        }
+
+        private static string longestShortestDollarWords(string[] filteredWords)
+        {
+            throw new NotImplementedException();
         }
 
         private static void OutputToFile(string[] filteredWords)
         {
-            File.WriteAllLines(@"C:\WTH\dollarWords.txt",filteredWords);
-
+            File.WriteAllLines(@"C:\WTH\dollarWords.txt", filteredWords);
         }
 
         public static string[] GetWordsFromFile(string filePathName)
         {
             List<string> allWords = new List<string>();
-            using (StreamReader file = new StreamReader(filePathName)) { 
-            while (!file.EndOfStream)
+            using (StreamReader file = new StreamReader(filePathName))
             {
-                allWords.Add(file.ReadLine());
+                while (!file.EndOfStream)
+                {
+                    allWords.Add(file.ReadLine());
+                }
+                return allWords.ToArray();
             }
-            return allWords.ToArray();
-        }
         }
 
         //does the acatual checking
-        public static string[] FilterWords(String[] words, int WordCountValue)
+        public static string[] FilterWords(string[] words, int WordCountValue, bool mostExpensiveWordSwitch)
         {
+            int largestPrice = 0;
+            int mostExpensiveWordIndex = 0;
+
             List<string> results = new List<string>();
-           // System.IO.StreamReader file = new System.IO.StreamReader(@FilePathName);
+            List<string> mostExpensiveWord = new List<string>();
+            // System.IO.StreamReader file = new System.IO.StreamReader(@FilePathName);
             foreach (var word in words)
             {
-               // String Words = file.ReadLine();
+                // String Words = file.ReadLine();
                 int price = CountingLetters(word);
                 //Console.WriteLine(Words);
+                if (price > largestPrice)
+                {
+                    largestPrice = price;
+                    mostExpensiveWordIndex++;
+                }
+                //mostExpensiveWord.Add(price);
                 if (price == WordCountValue)
                 {
                     results.Add(word);
                 }
             }
 
-            return results.ToArray();
+
+
+            string l = results.ElementAt(0);
+
+
+            if (mostExpensiveWordSwitch == true)
+            {
+                mostExpensiveWord.Add(l);
+                return mostExpensiveWord.ToArray();
+            }
+
+            if (mostExpensiveWordSwitch == false)
+            {
+                return results.ToArray();
+            }
+            return null;
         }
 
         public static int CountingLetters(String word)
@@ -208,20 +225,9 @@ Commit this work (with a descriptive commit message), and push it to github
                 {
                     WordCountAmount += 26;
                 }
-                //Console.WriteLine(c);
             }
             return WordCountAmount;
-            //if (WordCountValue == WordCountAmount)
-            //{
-
-
-            //File.OpenWrite(@"C:\Users\Zairick\Desktop\USM\Fall 2019\COS 470\Projects\Assignment 1");
-            //File.AppendAllText(@"C:\Users\Zairick\Desktop\USM\Fall 2019\COS 470\Projects\Assignment 1", words);
-            //var path = @"C:\Users\Zairick\Desktop\USM\Fall 2019\COS 470\Projects\Assignment 1";
-
-
-            //}
-            //Console.WriteLine(WordCountAmount);
         }
+
     }
 }
