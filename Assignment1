@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +16,22 @@ namespace Assignment1._1
             OutputToFile(filteredWords);
             OutputStats(words, 100, filteredWords);
         }
-
+        /*
+        Program your application to
+        Read the text file
+        Hint: The File class, using System.IO;
+        Hint: If you use a file Stream, remember to Dispose() it.
+        Find all "Dollar words" as described in "Context" above
+        Hint: There should be a clear separation between user interface code, business logic code, and File IO code.
+        Write the dollar words to a file like: "DollarWords.txt"
+        Write some aggregate information to the console, for example:
+        what portion of words are dollar words
+        how long it took
+        what was the longest/shortest dollar word
+        what is the most expensive word
+        Save the console output into the project directory (screenshot or copy-pasta into a text file)
+        Commit this work (with a descriptive commit message), and push it to github
+        */
         private static void OutputStats(string[] words, int wordCountValue, string[] filteredWords)
         {
             /*
@@ -25,18 +41,31 @@ namespace Assignment1._1
                 what is the most expensive word
              * 
              */
+            var watch = System.Diagnostics.Stopwatch.StartNew();
             Console.WriteLine("The portion of words that are dollar words are " + percentageOfDollarWords(words, filteredWords));
-            Console.WriteLine("" + mostExpensiveWord(words, wordCountValue, true));
-
-            //string mostExpensiveWord = mostExpensiveWord(words);
-
-            //longestShortestDollarWords(filteredWords);
-
+            Console.WriteLine("The most expencive word is \"" + mostExpensiveWord(words) + "\"");
+            Console.WriteLine(longestShortestDollarWords(filteredWords));
+            watch.Stop();
+            string elapsed = watch.Elapsed.ToString();
+            string elapsedMs = watch.ElapsedMilliseconds.ToString();
+     
+            Console.WriteLine("The time taken to run this program in Milliseconds is " + elapsedMs) ;
+            
         }
 
-        private static string mostExpensiveWord(string[] words, int wordCountValue, bool mostExpensiveWordSwitch)
+        private static string mostExpensiveWord(string[] words)
         {
-            return FilterWords(words, wordCountValue, mostExpensiveWordSwitch).ToString();
+            int[] wordPrice = new int[words.Length];
+            string word;
+
+            for (int i = 0; i <= words.Length - 1; i++)
+            {
+                word = words[i];
+                wordPrice[i] = CountingLetters(word);
+
+            }
+            return words[wordPrice.Max()];
+            //return FilterWords(words, wordCountValue, mostExpensiveWordSwitch).ToString();
 
         }
 
@@ -48,7 +77,29 @@ namespace Assignment1._1
 
         private static string longestShortestDollarWords(string[] filteredWords)
         {
-            throw new NotImplementedException();
+
+            int largestValue = int.MinValue;
+            string largestString = "";
+
+            int shortestValue = int.MaxValue;
+            string shortestString = "";
+
+            for (int i = 0; i <= filteredWords.Length-1; i++)
+            {
+                if (filteredWords[i].Length > largestValue)
+                {
+                    largestValue = filteredWords[i].Length;
+                    largestString = filteredWords[i];
+                }
+
+                if (filteredWords[i].Length < shortestValue)
+                {
+                    shortestValue = filteredWords[i].Length;
+                    shortestString = filteredWords[i];
+                }
+            }
+            string Output = "The largest Dollar word is \"" + largestString + "\" \nThe shortest Dollar word is \"" + shortestString +"\"";
+            return Output;
         }
 
         private static void OutputToFile(string[] filteredWords)
@@ -94,12 +145,13 @@ namespace Assignment1._1
                     results.Add(word);
                 }
             }
+            /*
             if (mostExpensiveWordSwitch == true)
             {
                 mostExpensiveWord.Add(results[mostExpensiveWordIndex]);
-                return mostExpensiveWord.ToArray();
+                return mostExpensiveWord[].ToArray() ;
             }
-
+*/
             if (mostExpensiveWordSwitch == false)
             {
                 return results.ToArray();
