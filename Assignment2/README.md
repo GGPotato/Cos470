@@ -1,4 +1,3 @@
-
 Assignment 2 "Dollar Addresses"
 Due Tuesday 2019-09-24
 
