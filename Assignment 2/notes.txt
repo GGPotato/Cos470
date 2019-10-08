@@ -1,0 +1,17 @@
+//*
+dollar Addresses 
+	Dependencies
+	API fetch
+		appsettings.json
+	JsonRoot.cs
+	Program.cs
+DollarAddresses Test
+DollarWords
+DollarWords.test
+HaveWeMet.core
+
+Assignment 3 Notes 
+	-Azure
+		-publishing an API
+		-Can be free for students 
+	-Makeing a website useing mvc
