@@ -20,6 +20,7 @@ namespace TestWebPage.Controllers
 
         public IActionResult Index()
         {
+            var catNames = new[] { "shadow", "fluffy", "smokey"};
             //ViewBag will not throw an error for type untill it crashes
             //will take any properitys you give it 
             //DO NOT USE THIS!
@@ -27,8 +28,8 @@ namespace TestWebPage.Controllers
             //var x = ViewBag + 4; //ViewBag
             //ViewBag.Dispose();
 
-            return View();
-        }
+            return View(catNames);
+        } 
 
         public IActionResult Privacy()
         {
