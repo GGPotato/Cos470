@@ -4,14 +4,14 @@ using System.Text;
 
 namespace business_logic_Library
 {
-    public class LocationAnalysis
+    public static class LocationAnalysis
     {
         // goal: make this work:
         // person1 = new[] { new WhereWhen() };
         // var collisions = LocationAnalysis.HaveWeMet(person1, person2, 10, TimeSpan.FromMinutes(5));
 
         //returns null if nothing is found
-        public WhereWhen HaveWeMet(WhereWhen[] person1, WhereWhen[] person2,
+        public static WhereWhen HaveWeMet(WhereWhen[] person1, WhereWhen[] person2,
             double distanceMeter, TimeSpan timeSpan)
         {
             foreach (WhereWhen unit in person1)
@@ -27,7 +27,9 @@ namespace business_logic_Library
             return null;
         }
 
-        public bool AreMeeting(WhereWhen a, WhereWhen b, double distanceMeter, TimeSpan timeSpan)
+       
+
+        public static bool AreMeeting(WhereWhen a, WhereWhen b, double distanceMeter, TimeSpan timeSpan)
         {
             if (GetDistanceKm(a.Where, b.Where) / 1000 < distanceMeter
                 && GetTimeSpan(a.When, b.When) < timeSpan)
@@ -38,14 +40,14 @@ namespace business_logic_Library
             return false;
         }
 
-        public TimeSpan GetTimeSpan(DateTime a, DateTime b)
+        public static TimeSpan GetTimeSpan(DateTime a, DateTime b)
         {
             return (a - b).Duration();
         }
 
 
 
-        public double GetDistanceKm(Location a, Location b)// unit test
+        public static double GetDistanceKm(Location a, Location b)
         {
           
             var LatPoint = a.Lat - b.Lat;
@@ -60,25 +62,20 @@ namespace business_logic_Library
 
         }
 
-        public List<Location> checkAlibi(WhereWhen[] person, DateTime startTime, DateTime endTime)
+        public static List<Location> checkAlibi(WhereWhen[] person, DateTime startTime, DateTime endTime)
         {/*
             public checkAlibi(WhereWhen[] person, DateTime startTime, DateTime endTime)
             {
-
-
-
             }
             */
             List<Location> locationList = new List<Location>();
             
-            for (int i = 0;i<=person.Length; i++)
+            for (int i = 0;i<=person.Length-1; i++)
             {
                 if((person[i].When >= startTime) && (person[i].When <= endTime))
                 {
                     locationList.Add(person[i].Where);
-
                 }
-
             }
             return locationList;
             

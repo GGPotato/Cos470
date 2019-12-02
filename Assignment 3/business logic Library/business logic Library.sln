@@ -5,7 +5,14 @@ VisualStudioVersion = 16.0.29324.140
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "business logic Library", "business logic Library.csproj", "{AF97F453-BA56-4A87-9090-DBF0ED0BB9F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationUnitTest", "..\LocationUnitTest\LocationUnitTest.csproj", "{E43BF513-2BF7-418D-85B4-AB7226627A2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocationUnitTest", "..\LocationUnitTest\LocationUnitTest.csproj", "{E43BF513-2BF7-418D-85B4-AB7226627A2F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{64A39D23-F97E-448E-BEFB-CF27510163DB}"
+	ProjectSection(SolutionItems) = preProject
+		TextFile1.txt = TextFile1.txt
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebPage!!!!!!", "..\WebPage!!!!!!\WebPage!!!!!!.csproj", "{9CA1D4E6-AB00-4288-835A-B843CEF4B7E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +28,10 @@ Global
 		{E43BF513-2BF7-418D-85B4-AB7226627A2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E43BF513-2BF7-418D-85B4-AB7226627A2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E43BF513-2BF7-418D-85B4-AB7226627A2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CA1D4E6-AB00-4288-835A-B843CEF4B7E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CA1D4E6-AB00-4288-835A-B843CEF4B7E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CA1D4E6-AB00-4288-835A-B843CEF4B7E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CA1D4E6-AB00-4288-835A-B843CEF4B7E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

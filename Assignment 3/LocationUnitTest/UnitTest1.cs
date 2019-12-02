@@ -18,19 +18,17 @@ namespace LocationUnitTest
         [Test()]
         public void TestAreMeeting()
         {
-            var driver = new LocationAnalysis();
-
-            var result = driver.AreMeeting(new WhereWhen(20, 20, DateTime.Now),
+            var result = LocationAnalysis.AreMeeting(new WhereWhen(20, 20, DateTime.Now),
                 new WhereWhen(20, 20, DateTime.Now),
                 1, new TimeSpan(10000));
             Assert.IsTrue(result);
 
-            result = driver.AreMeeting(new WhereWhen(20, 20, DateTime.Now),
+            result = LocationAnalysis.AreMeeting(new WhereWhen(20, 20, DateTime.Now),
                 new WhereWhen(10, 10, DateTime.Now),
                 1, new TimeSpan(10000));
             Assert.IsFalse(result);
 
-            result = driver.AreMeeting(new WhereWhen(20, 20, DateTime.Now),
+            result = LocationAnalysis.AreMeeting(new WhereWhen(20, 20, DateTime.Now),
                 new WhereWhen(20, 20, DateTime.Now.AddDays(1)),
                 1, new TimeSpan(10000));
             Assert.IsFalse(result);
@@ -39,14 +37,13 @@ namespace LocationUnitTest
         [Test()]
         public void TestGetDistanceKm()
         {
-            var driver = new LocationAnalysis();
-
-            var result = driver.GetDistanceKm(
+            
+            var result = LocationAnalysis.GetDistanceKm(
             new Location(20, 20),
             new Location(20, 20));
             Assert.IsFalse(result !=0);
 
-            result = driver.GetDistanceKm(
+            result = LocationAnalysis.GetDistanceKm(
             new Location(20, 20),
             new Location(20, 20));
             Assert.IsTrue(result == 0);
