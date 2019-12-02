@@ -1,0 +1,8 @@
+locations on the board 
+user interaction with board 
+
+as a user i would like to be entertained by playing a game
+game state
+	IPlayers
+	position
+	Square [][][] "position"

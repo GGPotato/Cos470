@@ -7,6 +7,7 @@ namespace WebRequest
     using System.Linq;
     using System.Net.Http;
     using System.Web;
+    using System.Configuration;
 
     public class WebRequest
     {
@@ -16,7 +17,7 @@ namespace WebRequest
             // Using HttpUtility to generate the parameters for the query string handles HTTP escaping the values.
             // Change these:
             var parameters = HttpUtility.ParseQueryString(string.Empty);
-            parameters["where"] = $"MUNICIPALITY='{CityName}' and STREETNAME='{streetName}' and ADDRESS_NUMBER='{addressNumber}'";
+            parameters["where"] = $"MUNICIPALITY='{System.Configuration.Appse}' and STREETNAME='{streetName}' and ADDRESS_NUMBER='{addressNumber}'";
             parameters["outFields"] = "Latitude,longitude";
             parameters["f"] = "pjson";
             //parameters["resultRecordCount"] = "";

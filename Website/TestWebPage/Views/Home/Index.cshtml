@@ -5,11 +5,13 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome to Zacharys page</h1>
-    <p> Hi I am Zach Look at Hacker News for a "FUN" read </p>
+    <p> Hi I am Zach Look at Hacker News for a FUN read </p>
 
-    @{ foreach( var catName in Model)
+    @{ foreach( var catName in Model.IdToName)
     {
-        <p>@catName</p>
+
+
+        <p>@(string.Join("", Enumerable.Range(0, catName.key + 1).Select(n => '!').ToArray())) @catName.Value</p>
     }
         <input type = "text"id="catField"/>
     }

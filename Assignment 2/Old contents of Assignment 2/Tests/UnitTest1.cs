@@ -11,12 +11,10 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            
-            //testGetDistanceKmFunction(response1, response2);
-
+         //   Session1 = new testGetDistanceKmFunction(response1, response2);
         }
 
-        [TestCase ("Lewiston", "First", 14, "Portland", "Falmouth", 96, 5, 47.26)]
+        [TestCase("Lewiston", "First", 14, "Portland", "Falmouth", 96, 5, 47.26)]
         [TestCase("Lewiston", "First", 14, "Gorham", "College", 37, 5, 49.08)]
         public void testGetDistanceKmFunction(
             string city, string street, int address, string city2, string street2, int address2, int range, double realdistence)

@@ -27,10 +27,10 @@ namespace business_logic_Library
             return null;
         }
 
-        private bool AreMeeting(WhereWhen a, WhereWhen b, double distanceMeter, TimeSpan timeSpan)
+        public bool AreMeeting(WhereWhen a, WhereWhen b, double distanceMeter, TimeSpan timeSpan)
         {
-            if (GetDistanceKm(a.where, b.where) / 1000 < distanceMeter
-                && GetTimeSpan(a.when, b.when) < timeSpan)
+            if (GetDistanceKm(a.Where, b.Where) / 1000 < distanceMeter
+                && GetTimeSpan(a.When, b.When) < timeSpan)
             {
                 return true;
             }
@@ -40,9 +40,6 @@ namespace business_logic_Library
 
         public TimeSpan GetTimeSpan(DateTime a, DateTime b)
         {
-            WhereWhen x = new WhereWhen();
-
-
             return (a - b).Duration();
         }
 
@@ -50,11 +47,12 @@ namespace business_logic_Library
 
         public double GetDistanceKm(Location a, Location b)// unit test
         {
-            var LatPoint = a.lat - b.lat;
-            var LonPoint = a.lon - b.lon;
+          
+            var LatPoint = a.Lat - b.Lat;
+            var LonPoint = a.Lon - b.Lon;
             //for lat
             var lat = LatPoint * 110.574; // km a
-            var lon = LonPoint * 111.320 * Math.Cos(b.lat);// km b
+            var lon = LonPoint * 111.320 * Math.Cos(b.Lat);// km b
 
             //a^2 + b^2 =c^2
             var c = Math.Sqrt(Math.Pow(lat, 2) + Math.Pow(lon, 2));
@@ -63,14 +61,21 @@ namespace business_logic_Library
         }
 
         public List<Location> checkAlibi(WhereWhen[] person, DateTime startTime, DateTime endTime)
-        {
+        {/*
+            public checkAlibi(WhereWhen[] person, DateTime startTime, DateTime endTime)
+            {
+
+
+
+            }
+            */
             List<Location> locationList = new List<Location>();
             
             for (int i = 0;i<=person.Length; i++)
             {
-                if((person[i].when >= startTime) && (person[i].when <= endTime))
+                if((person[i].When >= startTime) && (person[i].When <= endTime))
                 {
-                    locationList.Add(person[i].where);
+                    locationList.Add(person[i].Where);
 
                 }
 
@@ -90,8 +95,13 @@ namespace business_logic_Library
 
         public class WhereWhen
         {
-            public DateTime when;
-            public Location where;
+            public WhereWhen(double lat, double lon, System.DateTime time)
+            {
+                Where = new Location(lat,lon);
+                When = time;
+            }
+            public DateTime When;
+            public Location Where;
 
            // public DateTime whatDay;
            // public Location listLocations;

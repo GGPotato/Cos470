@@ -21,15 +21,16 @@ namespace TestWebPage.Controllers
         public IActionResult Index()
         {
             var catNames = new[] { "shadow", "fluffy", "smokey"};
-            //ViewBag will not throw an error for type untill it crashes
-            //will take any properitys you give it 
-            //DO NOT USE THIS!
-            //ViewBag.ToString(); // ViewBag 
-            //var x = ViewBag + 4; //ViewBag
-            //ViewBag.Dispose();
-
+     
             return View(catNames);
-        } 
+        }
+        [HttpPost]
+        public ActionResult<int> NewCat([FromBody] string catName)
+        {
+            //var catNames = new[] { "shadow", "fluffy", "smokey" };
+            var id = Vet.AddNewCat(catName);
+            return ApplicationResult<int>(id);
+        }
 
         public IActionResult Privacy()
         {

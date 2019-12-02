@@ -7,10 +7,9 @@ namespace DollarAddresses
     {
         static void Main(string[] args)
         {
-
             location[] response1 = WebRequest.WebRequest.findLocations("Lewiston", "First", 14);
             location[] response2 = WebRequest.WebRequest.findLocations("Gorham", "College", 37);
-            
+            //boss might want to change city locations
             if (response1.Length >= 1 && response2.Length >=1)
             {
                 double distance = GetDistanceKm(response1[0], response2[0]);

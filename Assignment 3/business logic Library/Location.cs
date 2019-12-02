@@ -4,8 +4,14 @@ namespace business_logic_Library
 {
     public class Location
     {
-        public double lat;
-        public double lon;
+
+        public Location(double lat, double lon)
+        {
+            Lat = lat;
+            Lon = lon;
+        }
+        public double Lat;
+        public double Lon;
 
     }
 
